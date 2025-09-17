@@ -489,10 +489,11 @@
             }
             
             .test-container {
-                background: transparent;
-                box-shadow: none;
+                background: white;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+                border-radius: 16px;
                 padding: 0;
-                margin: 0;
+                margin: 0 15px;
             }
             
             .options {
@@ -546,15 +547,8 @@
                 margin-bottom: 30px;
             }
 
-            .test-container {
-                background: transparent;
-                box-shadow: none;
-                padding: 0;
-                margin: 0;
-            }
-
             .start-title {
-                font-size: 4rem;
+                font-size: 2.4rem;
             }
 
             .start-description {
@@ -577,7 +571,7 @@
             }
 
             .question-container {
-                padding: 0 20px;
+                padding: 24px 18px;
             }
 
             .question-number {
@@ -590,6 +584,11 @@
                 max-width: 100%;
             }
 
+            .option-text {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+
             .result-description {
                 padding: 12px;
             }
@@ -600,6 +599,23 @@
 
             .result-description h4 {
                 font-size: 1.2rem;
+            }
+
+            .result-container {
+                max-width: none;
+                width: 100%;
+                padding: 0 15px;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .result-card {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+                padding: 20px 15px;
             }
         }
 
