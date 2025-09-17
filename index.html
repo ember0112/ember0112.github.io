@@ -30,7 +30,19 @@
             // 전역에서 사용할 수 있도록 설정
             window.firebaseDB = db;
             window.firebaseCollections = { collection, addDoc, getDocs, query, orderBy, limit };
-            console.log('Firebase 초기화 성공');
+            console.log('🔥 Firebase 초기화 성공!');
+            console.log('🔗 프로젝트 ID:', firebaseConfig.projectId);
+            
+            // 연결 테스트
+            setTimeout(async () => {
+                try {
+                    const testQuery = query(collection(db, 'leaderboard'), limit(1));
+                    await getDocs(testQuery);
+                    console.log('✅ Firebase Firestore 연결 테스트 성공!');
+                } catch (testError) {
+                    console.error('❌ Firebase Firestore 연결 테스트 실패:', testError);
+                }
+            }, 1000);
         } catch (error) {
             console.error('Firebase 초기화 실패:', error);
             window.firebaseDB = null;
@@ -862,6 +874,12 @@
 
         async function getLeaderboard() {
             try {
+                // Firebase 연결 확인
+                if (!window.firebaseDB || !window.firebaseCollections) {
+                    console.log('Firebase 연결 없음, 로컬 스토리지 사용');
+                    return JSON.parse(localStorage.getItem('mbtiLeaderboard') || '[]');
+                }
+                
                 const { collection, getDocs, query, orderBy, limit } = window.firebaseCollections;
                 const q = query(
                     collection(window.firebaseDB, 'leaderboard'), 
@@ -873,6 +891,7 @@
                 querySnapshot.forEach((doc) => {
                     leaderboard.push(doc.data());
                 });
+                console.log('Firebase에서 리더보드 로드 성공:', leaderboard.length, '개 항목');
                 return leaderboard;
             } catch (error) {
                 console.error('리더보드 로드 중 오류:', error);
@@ -883,14 +902,17 @@
 
         async function displayLeaderboard() {
             console.log('displayLeaderboard 함수 호출됨');
+            
             let leaderboard = [];
             
             try {
                 leaderboard = await getLeaderboard();
                 console.log('리더보드 데이터:', leaderboard);
+                console.log('리더보드 항목 수:', leaderboard.length);
             } catch (error) {
                 console.error('리더보드 로드 오류:', error);
                 leaderboard = JSON.parse(localStorage.getItem('mbtiLeaderboard') || '[]');
+                console.log('로컬 스토리지 폴백 데이터:', leaderboard);
             }
             
             let leaderboardHTML = '';
