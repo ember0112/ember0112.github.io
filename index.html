@@ -8,46 +8,45 @@
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <!-- Firebase SDK -->
     <script type="module">
-        // ??
-        try {
-            import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-            import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-            
-            // Firebase 설정 - 실제 Firebase 프로젝트 연결됨!
-            const firebaseConfig = {
-                apiKey: "AIzaSyCLgZFbFaVLbji9xUOdJoVN7DPjetr-Plc",
-                authDomain: "channel-engineer.firebaseapp.com",
-                projectId: "channel-engineer",
-                storageBucket: "channel-engineer.firebasestorage.app",
-                messagingSenderId: "230164841431",
-                appId: "1:230164841431:web:aff327d04cb6cf1b494192"
-            };
-            
-            // Firebase 초기화
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
-            
-            // 전역에서 사용할 수 있도록 설정
-            window.firebaseDB = db;
-            window.firebaseCollections = { collection, addDoc, getDocs, query, orderBy, limit };
-            console.log('🔥 Firebase 초기화 성공!');
-            console.log('🔗 프로젝트 ID:', firebaseConfig.projectId);
-            
-            // 연결 테스트
-            setTimeout(async () => {
-                try {
-                    const testQuery = query(collection(db, 'leaderboard'), limit(1));
-                    await getDocs(testQuery);
-                    console.log('✅ Firebase Firestore 연결 테스트 성공!');
-                } catch (testError) {
-                    console.error('❌ Firebase Firestore 연결 테스트 실패:', testError);
-                }
-            }, 1000);
-        } catch (error) {
-            console.error('Firebase 초기화 실패:', error);
-            window.firebaseDB = null;
-            window.firebaseCollections = null;
-        }
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDuE2BfjWhHBI5pBT_FoY-_6wbEfovSaKA",
+            authDomain: "ch-eng-corevalue.firebaseapp.com",
+            projectId: "ch-eng-corevalue",
+            storageBucket: "ch-eng-corevalue.firebasestorage.app",
+            messagingSenderId: "1038490021200",
+            appId: "1:1038490021200:web:6e8249c9e698da3ad35055",
+            measurementId: "G-FH0PM752J7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // 전역에서 사용할 수 있도록 설정
+        window.firebaseDB = db;
+        window.firebaseCollections = { collection, addDoc, getDocs, query, orderBy, limit };
+        console.log('🔥 Firebase 초기화 성공!');
+        console.log('🔗 프로젝트 ID:', firebaseConfig.projectId);
+
+        // 연결 테스트
+        setTimeout(async () => {
+            try {
+                const testQuery = query(collection(db, 'leaderboard'), limit(1));
+                await getDocs(testQuery);
+                console.log('✅ Firebase Firestore 연결 테스트 성공!');
+            } catch (testError) {
+                console.error('❌ Firebase Firestore 연결 테스트 실패:', testError);
+                console.error('테스트 오류 상세:', testError.code, testError.message);
+            }
+        }, 1000);
     </script>
     <style>
         * {
