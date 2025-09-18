@@ -60,7 +60,8 @@
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             min-height: 100vh;
             color: #333;
-            padding-top: 80px;
+            padding-top: 0px;
+            margin: 0;
         }
 
         .container {
@@ -87,19 +88,20 @@
 
         .start-screen {
             text-align: center;
-            padding: 80px 40px;
+            padding: 40px 20px 60px 20px;
             height: 100vh;
-            width: 100vw;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
+            width: 100%;
             background: linear-gradient(180deg, #160132 0%, #4A2CDE 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            overflow-y: auto;
         }
 
         .start-logo {
@@ -147,9 +149,99 @@
             align-items: center;
             gap: 20px;
             width: 100%;
-            max-width: 350px;
+            max-width: 450px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .start-buttons {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .start-buttons .btn {
+            flex: 1;
+            min-width: 140px;
+            max-width: 200px;
+        }
+
+        .start-leaderboard {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .start-leaderboard h4 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            text-align: center;
+        }
+
+        .start-leaderboard-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .start-leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .start-leaderboard-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .start-leaderboard-nickname {
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .start-leaderboard-result {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+        }
+
+        .start-leaderboard-empty {
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            font-style: italic;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        .start-leaderboard-more {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .start-leaderboard-more:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .start-form .btn {
@@ -169,6 +261,18 @@
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .leaderboard-start-btn {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 2px solid rgba(255, 255, 255, 0.2) !important;
+            font-size: 1rem !important;
+            padding: 15px 35px !important;
+        }
+
+        .leaderboard-start-btn:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
         }
 
         .btn {
@@ -552,7 +656,10 @@
             }
 
             .start-screen {
-                padding: 60px 20px;
+                padding: 20px 15px 40px 15px;
+                justify-content: flex-start;
+                height: 100vh;
+                overflow-y: auto;
             }
 
             .start-logo {
@@ -582,9 +689,50 @@
             }
 
             .start-form {
-                max-width: 280px;
+                max-width: 320px;
                 margin-left: auto;
                 margin-right: auto;
+            }
+
+            .start-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .start-buttons .btn {
+                min-width: auto;
+                max-width: none;
+                width: 100%;
+            }
+
+            .start-leaderboard {
+                max-width: 320px;
+                margin-top: 25px;
+                padding: 15px;
+            }
+
+            .start-leaderboard h4 {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+
+            .start-leaderboard-list {
+                max-height: 150px;
+            }
+
+            .start-leaderboard-item {
+                padding: 6px 10px;
+                margin-bottom: 4px;
+            }
+
+            .start-leaderboard-nickname,
+            .start-leaderboard-result {
+                font-size: 0.8rem;
+            }
+
+            .start-leaderboard-more {
+                padding: 8px 16px;
+                font-size: 0.8rem;
             }
 
             .nickname-input {
@@ -695,6 +843,207 @@
             font-style: italic;
             padding: 30px;
         }
+
+        .leaderboard-full-btn {
+            background: #572DFF;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .leaderboard-full-btn:hover {
+            background: #4A2CDE;
+            transform: translateY(-1px);
+        }
+
+        /* 전체 리더보드 모달 스타일 */
+        .leaderboard-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .leaderboard-modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-modal-header {
+            padding: 30px 30px 20px 30px;
+            border-bottom: 2px solid #f1f3f4;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
+        }
+
+        .leaderboard-modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+
+        .leaderboard-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .leaderboard-modal-close:hover {
+            background: #f1f3f4;
+            color: #333;
+        }
+
+        .leaderboard-modal-body {
+            padding: 20px 30px 30px 30px;
+            max-height: calc(80vh - 120px);
+            overflow-y: auto;
+        }
+
+        .leaderboard-full-list {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .leaderboard-full-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            transition: background-color 0.2s ease;
+            position: relative;
+        }
+
+        .leaderboard-full-item:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-full-item:hover {
+            background-color: rgba(87, 45, 255, 0.05);
+        }
+
+        .leaderboard-rank {
+            font-weight: 700;
+            color: #572DFF;
+            font-size: 1.1rem;
+            min-width: 40px;
+        }
+
+        .leaderboard-full-nickname {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .leaderboard-full-result {
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-align: right;
+            max-width: 150px;
+        }
+
+        .leaderboard-full-empty {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 50px 20px;
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .leaderboard-modal {
+                padding: 10px;
+            }
+
+            .leaderboard-modal-content {
+                max-height: 90vh;
+            }
+
+            .leaderboard-modal-header {
+                padding: 20px 20px 15px 20px;
+            }
+
+            .leaderboard-modal-title {
+                font-size: 1.5rem;
+            }
+
+            .leaderboard-modal-close {
+                top: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+
+            .leaderboard-modal-body {
+                padding: 15px 20px 20px 20px;
+                max-height: calc(90vh - 100px);
+            }
+
+            .leaderboard-full-item {
+                padding: 12px 15px;
+                flex-wrap: wrap;
+            }
+
+            .leaderboard-rank {
+                min-width: 35px;
+                font-size: 1rem;
+            }
+
+            .leaderboard-full-nickname {
+                margin-left: 10px;
+            }
+
+            .leaderboard-full-result {
+                max-width: 100%;
+                margin-top: 5px;
+                width: 100%;
+                text-align: left;
+            }
+        }
     </style>
 </head>
 <body>
@@ -712,8 +1061,15 @@
         </p>
         <div class="start-form">
             <input type="text" class="nickname-input" id="nicknameInput" placeholder="닉네임을 입력해주세요" maxlength="10">
-            <button class="btn" onclick="startTest()">시작하기</button>
+            <div class="start-buttons">
+                <button class="btn" onclick="startTest()">시작하기</button>
+                <button class="btn leaderboard-start-btn" onclick="showFullLeaderboard()">
+                    전체 리더보드 보기
+                </button>
+            </div>
         </div>
+        
+
     </div>
 
     <img src="logo.png" alt="Channel Logo" class="logo">
@@ -741,6 +1097,19 @@
             <!-- 결과 화면 -->
             <div class="result-container" id="resultContainer">
                 <!-- 결과가 동적으로 삽입됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 전체 리더보드 모달 -->
+    <div class="leaderboard-modal" id="leaderboardModal">
+        <div class="leaderboard-modal-content">
+            <div class="leaderboard-modal-header">
+                <h2 class="leaderboard-modal-title">전체 리더보드</h2>
+                <button class="leaderboard-modal-close" onclick="closeLeaderboardModal()">&times;</button>
+            </div>
+            <div class="leaderboard-modal-body" id="leaderboardModalBody">
+                <!-- 전체 리더보드가 동적으로 삽입됩니다 -->
             </div>
         </div>
     </div>
@@ -913,7 +1282,7 @@
             localStorage.setItem('mbtiLeaderboard', JSON.stringify(leaderboard));
         }
 
-        async function getLeaderboard() {
+        async function getLeaderboard(limitCount = 20) {
             try {
                 // Firebase 연결 확인
                 if (!window.firebaseDB || !window.firebaseCollections) {
@@ -925,7 +1294,7 @@
                 const q = query(
                     collection(window.firebaseDB, 'leaderboard'), 
                     orderBy('timestamp', 'desc'), 
-                    limit(20)
+                    limit(limitCount)
                 );
                 const querySnapshot = await getDocs(q);
                 const leaderboard = [];
@@ -977,6 +1346,9 @@
                     <div class="leaderboard-list">
                         ${leaderboardHTML}
                     </div>
+                    <button class="leaderboard-full-btn" onclick="showFullLeaderboard()">
+                        전체 리더보드 보기
+                    </button>
                 </div>
             `;
         }
@@ -989,6 +1361,41 @@
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
             }
             return shuffled;
+        }
+
+        // 시작 화면 리더보드 표시
+        async function displayStartLeaderboard() {
+            console.log('시작 화면 리더보드 로드');
+            const startLeaderboardList = document.getElementById('startLeaderboardList');
+            
+            // 로딩 상태 표시
+            startLeaderboardList.innerHTML = '<div class="start-leaderboard-empty">로딩 중...</div>';
+            
+            try {
+                const leaderboard = await getLeaderboard(8); // 최대 8개만 표시
+                console.log('시작 화면 리더보드 데이터:', leaderboard.length, '개 항목');
+                
+                let leaderboardHTML = '';
+                
+                if (leaderboard.length === 0) {
+                    leaderboardHTML = '<div class="start-leaderboard-empty">아직 결과가 없어요 🤔<br>첫 번째 도전자가 되어보세요!</div>';
+                } else {
+                    leaderboardHTML = leaderboard
+                        .slice(0, 5) // 최대 5개만 표시
+                        .map(entry => `
+                            <div class="start-leaderboard-item">
+                                <div class="start-leaderboard-nickname">${entry.nickname}</div>
+                                <div class="start-leaderboard-result">${entry.result}</div>
+                            </div>
+                        `).join('');
+                }
+                
+                startLeaderboardList.innerHTML = leaderboardHTML;
+                
+            } catch (error) {
+                console.error('시작 화면 리더보드 로드 오류:', error);
+                startLeaderboardList.innerHTML = '<div class="start-leaderboard-empty">리더보드를 불러올 수 없어요 😅</div>';
+            }
         }
 
         function startTest() {
@@ -1005,6 +1412,7 @@
             
             document.getElementById('startScreen').style.display = 'none';
             document.getElementById('questionContainer').style.display = 'block';
+            document.body.style.paddingTop = '80px';
             showQuestion(0);
         }
 
@@ -1251,6 +1659,9 @@
             // 닉네임 입력 필드 초기화
             document.getElementById('nicknameInput').value = '';
             
+            // body padding 초기화
+            document.body.style.paddingTop = '0px';
+            
             // 페이지 상단으로 스크롤
             window.scrollTo({ top: 0, behavior: 'instant' });
             
@@ -1341,6 +1752,70 @@
                 alert('이미지 다운로드 중 오류가 발생했습니다. 다시 시도해주세요.');
             }
         }
+
+        // 전체 리더보드 모달 표시
+        async function showFullLeaderboard() {
+            console.log('전체 리더보드 모달 표시');
+            const modal = document.getElementById('leaderboardModal');
+            const modalBody = document.getElementById('leaderboardModalBody');
+            
+            // 로딩 상태 표시
+            modalBody.innerHTML = '<div style="text-align: center; padding: 50px; color: #999;">로딩 중...</div>';
+            modal.style.display = 'flex';
+            
+            try {
+                // 전체 리더보드 데이터 가져오기 (최대 100개)
+                const fullLeaderboard = await getLeaderboard(100);
+                console.log('전체 리더보드 데이터:', fullLeaderboard.length, '개 항목');
+                
+                let leaderboardHTML = '';
+                
+                if (fullLeaderboard.length === 0) {
+                    leaderboardHTML = '<div class="leaderboard-full-empty">아직 결과가 없어요 🤔</div>';
+                } else {
+                    leaderboardHTML = fullLeaderboard
+                        .map((entry, index) => `
+                            <div class="leaderboard-full-item">
+                                <div class="leaderboard-full-nickname">${entry.nickname}</div>
+                                <div class="leaderboard-full-result">${entry.result}</div>
+                            </div>
+                        `).join('');
+                }
+                
+                modalBody.innerHTML = `
+                    <div class="leaderboard-full-list">
+                        ${leaderboardHTML}
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('전체 리더보드 로드 오류:', error);
+                modalBody.innerHTML = '<div class="leaderboard-full-empty">리더보드를 불러오는 중 오류가 발생했습니다 😞</div>';
+            }
+        }
+
+        // 전체 리더보드 모달 닫기
+        function closeLeaderboardModal() {
+            const modal = document.getElementById('leaderboardModal');
+            modal.style.display = 'none';
+        }
+
+        // 모달 외부 클릭 시 닫기
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('leaderboardModal');
+            if (event.target === modal) {
+                closeLeaderboardModal();
+            }
+        });
+
+        // ESC 키로 모달 닫기
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLeaderboardModal();
+            }
+        });
+
+
     </script>
 </body>
 </html>
